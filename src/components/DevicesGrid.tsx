@@ -1,5 +1,4 @@
 "use client";
-import * as React from "react";
 import styled from "styled-components";
 
 export const DevicesGrid = () => {
@@ -12,58 +11,49 @@ export const DevicesGrid = () => {
           alt="Options"
         />
       </Header>
-      <DevicesContainer>
-        <DeviceCard>
-          <DeviceStatus>Off</DeviceStatus>
-          <DeviceIcon
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/bc88d480dfb45978b14388b80d7b24537221e539?placeholderIfAbsent=true&apiKey=4450958e453149c3ba146ee9b9586ae1"
-            alt="Air Conditioner"
-          />
-          <DeviceName>Air Conditioner</DeviceName>
-        </DeviceCard>
-        <DeviceCard active>
-          <DeviceStatus>On</DeviceStatus>
-          <DeviceIcon
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/5f5fd09ec9fdf861300da0d8fa3fec4ef5dff0c3?placeholderIfAbsent=true&apiKey=4450958e453149c3ba146ee9b9586ae1"
-            alt="Smart TV"
-          />
-          <DeviceName>Smart TV</DeviceName>
-        </DeviceCard>
-        <DeviceCard>
-          <DeviceStatus>Off</DeviceStatus>
-          <DeviceIcon
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/e144b926df3561d6ff16f507a36a1d990793cf15?placeholderIfAbsent=true&apiKey=4450958e453149c3ba146ee9b9586ae1"
-            alt="Coffee Machine"
-          />
-          <DeviceName>Coffee Machine</DeviceName>
-        </DeviceCard>
-        <DeviceCard active>
-          <DeviceStatus>On</DeviceStatus>
-          <DeviceIcon
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/14939071a24ac744aee88d761bf52adb2c0bf782?placeholderIfAbsent=true&apiKey=4450958e453149c3ba146ee9b9586ae1"
-            alt="Refrigerator"
-          />
-          <DeviceName>Refrigerator</DeviceName>
-        </DeviceCard>
-      </DevicesContainer>
+      <DevicesRow>
+        {devices.map((device, index) => (
+          <DeviceCard key={index}>
+            <DeviceIcon>
+              <img src={device.icon} alt={device.name} />
+            </DeviceIcon>
+            <DeviceInfo>
+              <DeviceName>{device.name}</DeviceName>
+              <DeviceState>{device.state}</DeviceState>
+            </DeviceInfo>
+          </DeviceCard>
+        ))}
+      </DevicesRow>
     </Container>
   );
 };
 
-const Container = styled.section`
-  margin-top: 40px;
+const devices = [
+  {
+    name: "Air Conditioner",
+    state: "Off",
+    icon: "/icons/Devices/AirConditioner.png",
+  },
+  {
+    name: "Smart TV",
+    state: "On",
+    icon: "/icons/Devices/SmartTV.png",
+  },
+  {
+    name: "Coffee Machine",
+    state: "Off",
+    icon: "/icons/Devices/CoffeeMachine.png",
+  },
+  {
+    name: "Refrigerator",
+    state: "On",
+    icon: "/icons/Devices/Refrigerator.png",
+  },
+];
+
+const Container = styled.div`
   width: 100%;
-  max-width: 744px;
-  font-family:
-    Chivo,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
-  font-weight: 400;
-  @media (max-width: 991px) {
-    max-width: 100%;
-  }
+  box-sizing: border-box;
 `;
 
 const Header = styled.div`
@@ -71,64 +61,73 @@ const Header = styled.div`
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  font-size: 24px;
-  color: rgba(43, 43, 43, 1);
+  flex-wrap: wrap;
 `;
 
 const Title = styled.h2`
+  font-size: 24px;
+  color: #2b2b2b;
   font-weight: 400;
 `;
 
 const OptionsIcon = styled.img`
   aspect-ratio: 1;
   object-fit: contain;
-  object-position: center;
   width: 24px;
 `;
 
-const DevicesContainer = styled.div`
+const DevicesRow = styled.div`
   display: flex;
-  margin-top: 24px;
-  align-items: start;
-  gap: 24px;
-  justify-content: start;
   flex-wrap: wrap;
-  @media (max-width: 991px) {
-    max-width: 100%;
-  }
+  gap: 24px;
+  padding-bottom: 8px;
+  margin-top: 24px;
+  justify-content: flex-start;
 `;
 
-const DeviceCard = styled.div<{ active?: boolean }>`
-  border-radius: 20px;
-  background-color: ${(props) =>
-    props.active ? "rgba(195, 219, 255, 1)" : "rgba(255, 255, 255, 1)"};
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+const DeviceCard = styled.div`
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  height: 140px;
+  flex: 1 1 180px;
+  max-width: 220px;
   display: flex;
-  padding: 20px 17px;
-  flex-direction: column;
-  align-items: start;
-  width: 168px;
-  @media (max-width: 991px) {
-    padding: 20px;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+`;
+
+const DeviceIcon = styled.div`
+  width: 48px;
+  height: 48px;
+  background-color: #3b82f6;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    aspect-ratio: 1;
   }
 `;
 
-const DeviceStatus = styled.div`
-  color: rgba(92, 92, 92, 1);
-  font-size: 20px;
+const DeviceInfo = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
-const DeviceIcon = styled.img`
-  aspect-ratio: 1;
-  object-fit: contain;
-  object-position: center;
-  width: 50px;
-  margin-top: 28px;
-`;
-
-const DeviceName = styled.h3`
-  color: rgba(40, 70, 128, 1);
+const DeviceName = styled.span`
+  font-weight: 500;
   font-size: 16px;
-  margin-top: 16px;
-  font-weight: 400;
+  color: #2b2b2b;
 `;
+
+const DeviceState = styled.span`
+  font-size: 12px;
+  color: #777;
+`;
+

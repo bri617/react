@@ -1,5 +1,5 @@
+
 "use client";
-import * as React from "react";
 import styled from "styled-components";
 
 export const EnergyLevels = () => {
@@ -16,10 +16,9 @@ export const EnergyLevels = () => {
         <KitchenEnergyChart>
           <ChartHeader>
             <ChartTitle>
-              <ChartIcon
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/2d604fb4340ae5de13c2bd780f8a7a3ff16b6f9d?placeholderIfAbsent=true&apiKey=4450958e453149c3ba146ee9b9586ae1"
-                alt="Kitchen"
-              />
+              <ChartIconWrapper>
+                <ChartIcon src="/icons/Levels/KitchenEnergy.png" alt="Kitchen" />
+              </ChartIconWrapper>
               <h3>Kitchen Energy</h3>
             </ChartTitle>
             <TimeSelector>
@@ -47,10 +46,9 @@ export const EnergyLevels = () => {
         <TotalEnergyChart>
           <ChartHeader>
             <ChartTitle>
-              <ChartIcon
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/0336d6d1d4ff356318aac83b58336b4e981b9ba8?placeholderIfAbsent=true&apiKey=4450958e453149c3ba146ee9b9586ae1"
-                alt="Total Energy"
-              />
+              <ChartIconWrapper>
+                <ChartIcon src="/icons/Levels/TotalEnergy.png" alt="Total Energy" />
+              </ChartIconWrapper>
               <h3>Total Energy</h3>
             </ChartTitle>
             <TimeSelector>
@@ -63,7 +61,6 @@ export const EnergyLevels = () => {
           </ChartHeader>
           <WeeklyChart>
             <ChartBars>
-              {/* Weekly energy bars */}
               <EnergyBar height="60%" />
               <EnergyBar height="80%" />
               <EnergyBar height="40%" />
@@ -93,10 +90,7 @@ export const EnergyLevels = () => {
 const Container = styled.section`
   margin-top: 40px;
   width: 100%;
-  max-width: 744px;
-  @media (max-width: 991px) {
-    max-width: 100%;
-  }
+  max-width: 100%;
 `;
 
 const Header = styled.div`
@@ -104,12 +98,7 @@ const Header = styled.div`
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  font-family:
-    Chivo,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Chivo, -apple-system, Roboto, Helvetica, sans-serif;
   font-weight: 400;
 `;
 
@@ -126,17 +115,6 @@ const OptionsIcon = styled.img`
   width: 24px;
 `;
 
-// const ChartsContainer = styled.div`
-//   display: flex;
-//   margin-top: 24px;
-//   align-items: start;
-//   gap: 24px;
-//   justify-content: start;
-//   flex-wrap: wrap;
-//   @media (max-width: 991px) {
-//     max-width: 100%;
-//   }
-// `;
 const ChartsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -162,12 +140,21 @@ const ChartTitle = styled.div`
   color: rgba(80, 80, 80, 1);
 `;
 
-const ChartIcon = styled.img`
-  aspect-ratio: 1;
-  object-fit: contain;
-  object-position: center;
-  width: 48px;
+const ChartIconWrapper = styled.div`
+  width: 40px;
+  height: 40px;
+  background-color: #3b82f6;
   border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ChartIcon = styled.img`
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  aspect-ratio: 1;
 `;
 
 const TimeSelector = styled.div`
@@ -178,16 +165,6 @@ const TimeSelector = styled.div`
   color: rgba(29, 29, 29, 1);
 `;
 
-// const BaseChart = styled.div`
-//   border-radius: 16px;
-//   background-color: rgba(255, 255, 255, 1);
-//   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
-//   padding: 21px 19px;
-//   width: 360px;
-//   @media (max-width: 991px) {
-//     width: 100%;
-//   }
-// `;
 const BaseChart = styled.div`
   border-radius: 16px;
   background-color: rgba(255, 255, 255, 1);
@@ -195,16 +172,11 @@ const BaseChart = styled.div`
   padding: 21px 19px;
   flex: 1;
   min-width: 300px;
-  max-width: 48%;
+  max-width: 100%;
   box-sizing: border-box;
-
-  @media (max-width: 991px) {
-    max-width: 100%;
-  }
 `;
 
 const KitchenEnergyChart = styled(BaseChart)``;
-
 const TotalEnergyChart = styled(BaseChart)``;
 
 const ChartImage = styled.img`
@@ -221,18 +193,9 @@ const TimeLabels = styled.div`
   margin-top: 68px;
   margin-left: 16px;
   justify-content: space-between;
-  font-family:
-    Chivo,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Chivo, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 13px;
   color: rgba(69, 68, 68, 1);
-  @media (max-width: 991px) {
-    margin-left: 10px;
-    margin-top: 40px;
-  }
 `;
 
 const TimeLabel = styled.span`
@@ -274,12 +237,7 @@ const DayLabels = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 13px;
-  font-family:
-    Chivo,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Chivo, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 14px;
   color: rgba(69, 68, 68, 1);
 `;

@@ -61,6 +61,10 @@ export const Sidebar = () => {
   );
 };
 
+
+export default Sidebar;
+
+
 const SidebarContainer = styled.div`
   position: relative;
   display: flex;
