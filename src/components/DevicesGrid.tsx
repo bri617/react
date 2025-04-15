@@ -12,17 +12,18 @@ export const DevicesGrid = () => {
         />
       </Header>
       <DevicesRow>
-        {devices.map((device, index) => (
-          <DeviceCard key={index}>
-            <TopRow>
-              <DeviceState>{device.state}</DeviceState>
-              <input type="checkbox" checked={device.state === "On"} readOnly />
-            </TopRow>
-            <DeviceIcon>
-              <img src={device.icon} alt={device.name} />
-            </DeviceIcon>
-            <DeviceName>{device.name}</DeviceName>
-          </DeviceCard>
+        {devices.map((device) => (
+       <DeviceCard key = {device.id}>
+       <TopRow>
+         <DeviceState>{device.state}</DeviceState>
+         <Toggle type="checkbox" />
+       </TopRow>
+       <DeviceIcon>
+         <img src={device.icon} alt={device.name} />
+       </DeviceIcon>
+       <DeviceName>{device.name}</DeviceName>
+     </DeviceCard>
+     
         ))}
       </DevicesRow>
     </Container>
@@ -54,6 +55,7 @@ const devices = [
 
 const Container = styled.div`
   width: 100%;
+  // box-sizing: border-box;
 `;
 
 const Header = styled.div`
@@ -63,6 +65,7 @@ const Header = styled.div`
   justify-content: space-between;
   font-family: Chivo, -apple-system, Roboto, Helvetica, sans-serif;
   font-weight: 400;
+  // margin-top: 8px;
 `;
 
 const Title = styled.h2`
@@ -81,14 +84,27 @@ const DevicesRow = styled.div`
   display: flex;
   gap: 23px;
   overflow-x: auto;
+  // padding-bottom: 8px;
+  // margin-top: 24px;
 `;
 
+// const DeviceCard = styled.div`
+//   background: white;
+//   border-radius: 16px;
+//   padding: 2px;
+//   width: 115px; height: 115px;
+//   display: flex;
+//   align-items: center;
+//   gap: 18px;
+//   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+//   flex-shrink: 0;
+// `;
 const DeviceCard = styled.div`
   background: white;
   border-radius: 16px;
   padding: 10px;
-  width: 115px;
-  height: 140px;
+  width: 110px;
+  height: 110px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -97,30 +113,82 @@ const DeviceCard = styled.div`
 
 const TopRow = styled.div`
   display: flex;
+  gap: 23px;
   justify-content: space-between;
   align-items: center;
 `;
 
-const DeviceState = styled.span`
-  font-size: 12px;
-  opacity: 0.6;
-`;
+// const DeviceIcon = styled.div`
+//   width: 20px;
+//   height: 20px;
+//   background-color: #3b82f6;
+//   border-radius: 12px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
 
+//   img {
+//     width: 50%;
+//     height: 50%;
+//     object-fit: contain;
+//     aspect-ratio: 1;
+//   }
+// `;
 const DeviceIcon = styled.div`
-  width: 100%;
+  width: 40px;
+  height: 40px;
+  background-color: #3b82f6;
+  border-radius: 6px;
   display: flex;
+  align-items: center;
   justify-content: center;
-  margin: 10px 0;
 
   img {
-    width: 32px;
-    height: 32px;
+    width: 80%;
+    height: 80%;
     object-fit: contain;
   }
 `;
 
+// const DeviceInfo = styled.div`
+//   display: flex;
+//   flex-direction: column;
+// `;
+
+// const DeviceInfo = styled.div`
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+// `;
+
+
+// const DeviceName = styled.span`
+//   font-weight: 500;
+//   font-size: 15px;
+//   color: #2b2b2b;
+// `;
+
+// const DeviceState = styled.span`
+//   font-size: 12px;
+//   color: #777;
+// `;
 const DeviceName = styled.span`
-  font-size: 14px;
-  font-weight: 600;
-  text-align: center;
+  font-weight: 500;
+  font-size: 13px;
+  color: #2b2b2b;
+  text-align: left;
+  margin-top: 6px;
+`;
+
+
+const DeviceState = styled.span`
+  font-size: 11px;
+  color: #777;
+`;
+
+const Toggle = styled.input`
+  width: 36px;
+  height: 18px;
+  accent-color: #3b82f6;
+  cursor: pointer;
 `;

@@ -35,17 +35,21 @@ export const RoomsSection = () => {
       </Header>
 
       <RoomsRow>
-        {rooms.map((room) => (
+      {rooms.map((room) => {
+        const imageName = room.name.replace(/\s+/g, ""); // removes all spaces
+        return (
           <RoomCard key={room.id}>
             <RoomIconWrapper>
-              <img src={`/icons/Rooms/${room.name}.png`} alt={room.name} />
+              <img src={`/icons/Rooms/${imageName}.png`} alt={room.name} />
             </RoomIconWrapper>
             <RoomDetails>
               <RoomName>{room.name}</RoomName>
               <DeviceCount>{room.devices} Devices</DeviceCount>
             </RoomDetails>
           </RoomCard>
-        ))}
+        );
+      })}
+
       </RoomsRow>
     </Container>
   );
