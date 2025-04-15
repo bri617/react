@@ -10,18 +10,19 @@ export const RoomsSection = () => {
       </Header>
       <RoomsRow>
       <RoomCard selected>
-      <RoomIconWrapper>
-        <img src="/icons/Rooms/Kitchen.png" alt="Kitchen" />
-      </RoomIconWrapper>
+        <RoomIconWrapper selected>
+          <img src="/icons/Rooms/Kitchen.png" alt="Kitchen" />
+        </RoomIconWrapper>
         <RoomDetails>
-          <RoomName>Kitchen</RoomName>
-          <DeviceCount>8 Devices</DeviceCount>
+        <RoomName>Kitchen</RoomName>
+        <DeviceCount>8 Devices</DeviceCount>
         </RoomDetails>
       </RoomCard>
 
 
-        <RoomCard>
-          <RoomIconWrapper>
+
+        <RoomCard selected>
+          <RoomIconWrapper selected>
             <img src="/icons/Rooms/LivingRoom.png" alt="Living Room" />
           </RoomIconWrapper>
           <RoomDetails>
@@ -30,8 +31,8 @@ export const RoomsSection = () => {
           </RoomDetails>
         </RoomCard>
 
-        <RoomCard>
-          <RoomIconWrapper>
+        <RoomCard selected>
+          <RoomIconWrapper selected>
             <img src="/icons/Rooms/Bedroom.png" alt="Bedroom" />
           </RoomIconWrapper>
           <RoomDetails>
@@ -40,8 +41,8 @@ export const RoomsSection = () => {
           </RoomDetails>
         </RoomCard>
 
-        <RoomCard>
-          <RoomIconWrapper>
+        <RoomCard selected>
+          <RoomIconWrapper selected>
             <img src="/icons/Rooms/Bathroom.png" alt="Bathroom" />
           </RoomIconWrapper>
           <RoomDetails>
@@ -102,10 +103,27 @@ const RoomsRow = styled.div`
 //   justify-content: space-between;
 //   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 // `;
+// const RoomCard = styled.div<{ selected?: boolean }>`
+//   background: ${(props) =>
+//     props.selected
+//       ? "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)"
+//       : "white"};
+//   border-radius: 16px;
+//   padding: 10px;
+//   width: 110px;
+//   height: 110px;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: left;
+//   justify-content: center;
+//   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+//   color: ${(props) => (props.selected ? "white" : "#1f1f1f")};
+//   transition: all 0.3s ease;
+// `;
 const RoomCard = styled.div<{ selected?: boolean }>`
-  background: ${(props) =>
-    props.selected
-      ? "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)"
+  background: ${({ selected }) =>
+    selected
+      ? "linear-gradient(135deg, #3b82f6 0%, #6366f1 100%)"
       : "white"};
   border-radius: 16px;
   padding: 10px;
@@ -114,10 +132,9 @@ const RoomCard = styled.div<{ selected?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: left;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  color: ${(props) => (props.selected ? "white" : "#1f1f1f")};
-  transition: all 0.3s ease;
+  justify-content: space-between;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  color: ${({ selected }) => (selected ? "white" : "#1f1f1f")};
 `;
 
 // const RoomIconWrapper = styled.div`
@@ -130,10 +147,26 @@ const RoomCard = styled.div<{ selected?: boolean }>`
 //   border-radius: 6px;
 
 // `;
-const RoomIconWrapper = styled.div`
+// const RoomIconWrapper = styled.div`
+//   width: 38px;
+//   height: 38px;
+//   background-color: rgba(204, 230, 251, 1);
+//   border-radius: 12px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+
+//   img {
+//     width: 24px;
+//     height: 24px;
+//     object-fit: contain;
+//   }
+// `;
+const RoomIconWrapper = styled.div<{ selected?: boolean }>`
   width: 48px;
   height: 48px;
-  background-color: rgba(204, 230, 251, 1);
+  background-color: ${({ selected }) =>
+    selected ? "#1e3a8a" : "rgba(204, 230, 251, 1)"};
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -143,6 +176,7 @@ const RoomIconWrapper = styled.div`
     width: 24px;
     height: 24px;
     object-fit: contain;
+    filter: ${({ selected }) => (selected ? "brightness(0) invert(1)" : "none")};
   }
 `;
 
