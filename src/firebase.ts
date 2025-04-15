@@ -1,5 +1,7 @@
 // src/firebase.ts
+
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -9,8 +11,11 @@ const firebaseConfig = {
   storageBucket: "smart-energy-firebase-18cbf.appspot.com",
   messagingSenderId: "193973073460",
   appId: "1:193973073460:web:13f73fad7ef07bc9fafc61",
-  measurementId: "G-5NV0FHH646",
+  measurementId: "G-5NV0FHH646"
 };
 
 const app = initializeApp(firebaseConfig);
+console.log("Firebase initialized");
+
+export const auth = getAuth(app);
 export const db = getFirestore(app);

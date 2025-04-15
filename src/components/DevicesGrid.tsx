@@ -1,7 +1,32 @@
 "use client";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+
+interface Device {
+  id: string;
+  name: string;
+  state: string; // 🔄 match Firestore field name
+  icon?: string; // optional if you fallback to imageName
+}
 
 export const DevicesGrid = () => {
+  const [devices, setDevices] = useState<Device[]>([]);
+
+  useEffect(() => {
+    const fetchDevices = async () => {
+      const querySnapshot = await getDocs(collection(db, "devices"));
+      const fetchedDevices: Device[] = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...(doc.data() as Omit<Device, "id">),
+      }));
+      setDevices(fetchedDevices);
+    };
+
+    fetchDevices();
+  }, []);
+
   return (
     <Container>
       <Header>
@@ -12,50 +37,32 @@ export const DevicesGrid = () => {
         />
       </Header>
       <DevicesRow>
-        {devices.map((device) => (
-       <DeviceCard key = {device.id}>
-       <TopRow>
-         <DeviceState>{device.state}</DeviceState>
-         <Toggle type="checkbox" />
-       </TopRow>
-       <DeviceIcon>
-         <img src={device.icon} alt={device.name} />
-       </DeviceIcon>
-       <DeviceName>{device.name}</DeviceName>
-     </DeviceCard>
-     
-        ))}
+        {devices.map((device) => {
+          const imageName = device.name.replace(/\s+/g, "");
+          return (
+            <DeviceCard key={device.id}>
+              <DeviceIcon>
+                <img
+                  src={device.icon || `/icons/Devices/${imageName}.png`}
+                  alt={device.name}
+                />
+              </DeviceIcon>
+              <DeviceDetails>
+                <DeviceName>{device.name}</DeviceName>
+                <Toggle type="checkbox" checked={device.state === "On"} readOnly />
+              </DeviceDetails>
+            </DeviceCard>
+          );
+        })}
       </DevicesRow>
     </Container>
   );
 };
 
-const devices = [
-  {
-    name: "Air Conditioner",
-    state: "Off",
-    icon: "/icons/Devices/AirConditioner.png",
-  },
-  {
-    name: "Smart TV",
-    state: "On",
-    icon: "/icons/Devices/SmartTV.png",
-  },
-  {
-    name: "Coffee Machine",
-    state: "Off",
-    icon: "/icons/Devices/CoffeeMachine.png",
-  },
-  {
-    name: "Refrigerator",
-    state: "On",
-    icon: "/icons/Devices/Refrigerator.png",
-  },
-];
+// ---------------------- Styled Components ----------------------
 
 const Container = styled.div`
   width: 100%;
-  // box-sizing: border-box;
 `;
 
 const Header = styled.div`
@@ -65,7 +72,6 @@ const Header = styled.div`
   justify-content: space-between;
   font-family: Chivo, -apple-system, Roboto, Helvetica, sans-serif;
   font-weight: 400;
-  // margin-top: 8px;
 `;
 
 const Title = styled.h2`
@@ -84,21 +90,8 @@ const DevicesRow = styled.div`
   display: flex;
   gap: 23px;
   overflow-x: auto;
-  // padding-bottom: 8px;
-  // margin-top: 24px;
 `;
 
-// const DeviceCard = styled.div`
-//   background: white;
-//   border-radius: 16px;
-//   padding: 2px;
-//   width: 115px; height: 115px;
-//   display: flex;
-//   align-items: center;
-//   gap: 18px;
-//   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-//   flex-shrink: 0;
-// `;
 const DeviceCard = styled.div`
   background: white;
   border-radius: 16px;
@@ -111,29 +104,6 @@ const DeviceCard = styled.div`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 `;
 
-const TopRow = styled.div`
-  display: flex;
-  gap: 23px;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-// const DeviceIcon = styled.div`
-//   width: 20px;
-//   height: 20px;
-//   background-color: #3b82f6;
-//   border-radius: 12px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-
-//   img {
-//     width: 50%;
-//     height: 50%;
-//     object-fit: contain;
-//     aspect-ratio: 1;
-//   }
-// `;
 const DeviceIcon = styled.div`
   width: 40px;
   height: 40px;
@@ -150,40 +120,17 @@ const DeviceIcon = styled.div`
   }
 `;
 
-// const DeviceInfo = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
+const DeviceDetails = styled.div`
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
 
-// const DeviceInfo = styled.div`
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-// `;
-
-
-// const DeviceName = styled.span`
-//   font-weight: 500;
-//   font-size: 15px;
-//   color: #2b2b2b;
-// `;
-
-// const DeviceState = styled.span`
-//   font-size: 12px;
-//   color: #777;
-// `;
 const DeviceName = styled.span`
   font-weight: 500;
   font-size: 13px;
   color: #2b2b2b;
-  text-align: left;
-  margin-top: 6px;
-`;
-
-
-const DeviceState = styled.span`
-  font-size: 11px;
-  color: #777;
 `;
 
 const Toggle = styled.input`

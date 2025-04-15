@@ -1,13 +1,38 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Energy Device Setup</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Include Firebase Libraries -->
+  <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js"></script>
+  <!-- Firebase configuration -->
+  <script src="firebase-config.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Smart Energy Device Setup</h1>
+    <!-- User Authentication Section -->
+    <div id="auth-section">
+      <h2>Create an Account</h2>
+      <form id="signup-form">
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Sign Up</button>
+      </form>
+      <div id="auth-message"></div>
+    </div>
+    
+    <!-- Device Setup Section -->
+    <div id="device-setup-section" style="display:none;">
+      <h2>Device Setup</h2>
+      <p>Please connect to the device's Wi‑Fi network to set up your smart energy device.</p>
+      <button id="discover-device-btn">Discover Device</button>
+      <div id="device-message"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
 </html>
