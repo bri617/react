@@ -60,8 +60,8 @@ export const HistorySection = () => {
 
 const Container = styled.section`
   display: flex;
-  min-width: 240px;
-  min-height: 740px;
+  // min-width: 150px;
+  // min-height: 740px;
   flex-direction: column;
   align-items: center;
   font-family:
@@ -72,7 +72,9 @@ const Container = styled.section`
     sans-serif;
   font-weight: 400;
   justify-content: start;
-  width: 340px;
+  width: 220px;
+  margin-top: 45px;
+  padding-right:25px;
 `;
 
 const Header = styled.div`
@@ -99,24 +101,27 @@ const ViewAll = styled.button`
 `;
 
 const HistoryList = styled.div`
-  margin-top: 40px;
+  // margin-top: 40px;
   width: 100%;
   font-size: 16px;
   color: rgba(0, 0, 0, 1);
+  
 `;
 
 const HistoryItem = styled.div`
   display: flex;
-  width: 100%;
-  align-items: start;
   justify-content: space-between;
-  margin-bottom: 24px;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
 `;
+
 
 const ItemContent = styled.div`
   display: flex;
   align-items: start;
-  gap: 8px;
+  gap: 6px;
+  white-space: nowrap;
 `;
 
 const StatusDot = styled.div<{ status: "on" | "off" }>`
@@ -125,7 +130,8 @@ const StatusDot = styled.div<{ status: "on" | "off" }>`
   border-radius: 50%;
   width: 11px;
   height: 11px;
-  margin-top: 4px;
+  margin-top: 10px;
+  margin-left:-4px;
 `;
 
 const ItemDetails = styled.div`
@@ -135,12 +141,15 @@ const ItemDetails = styled.div`
 
 const DeviceName = styled.div`
   font-size: 16px;
+  margin-top: 6px;
+
 `;
 
 const Status = styled.div`
-  margin-top: 4px;
   font-size: 15px;
   color: rgba(0, 0, 0, 1);
+  // gap: 190px;
+
 `;
 
 const Time = styled.div`

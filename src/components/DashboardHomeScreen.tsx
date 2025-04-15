@@ -50,7 +50,7 @@ export default function DashboardHomeScreen() {
 
 const DashboardContainer = styled.main`
   background-color: rgba(232, 243, 252, 1);
-  padding: 28px 24px;
+  // padding: 28px 24px;
   overflow-x: auto;
   width: 100vw;
   box-sizing: border-box;
@@ -68,6 +68,7 @@ const Layout = styled.div`
     align-items: stretch;
     gap: 0px;
   }
+    padding: 10px;
 `;
 
 const SidebarColumn = styled.aside`
@@ -88,7 +89,7 @@ const MainColumn = styled.section`
   align-items: stretch;
   line-height: normal;
   width: 82%;
-  margin-left: 20px;
+  margin-left: 30px;
   @media (max-width: 991px) {
     width: 100%;
   }
@@ -97,7 +98,7 @@ const MainColumn = styled.section`
 const MainContent = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 32px;
+  gap: 15px;
   align-items: flex-start;
   flex-wrap: wrap;
   width: 100%;
@@ -111,13 +112,23 @@ const ContentWrapper = styled.div`
 `;
 
 const Section = styled.div`
-  margin-bottom: 32px;
+  // margin-bottom: 32px;
   width: 100%;
 `;
 
 const HistoryColumn = styled.aside`
-  min-width: 260px;
+  min-width: 200px;
+  position: relative;
   padding-left: 24px;
-  border-left: 1px solid rgba(0, 0, 0, 0.1);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 77px;       // where the line starts
+    height: 873px;   // how tall the line is
+    left: 0;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 `;
 

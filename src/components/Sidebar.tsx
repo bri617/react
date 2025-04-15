@@ -92,10 +92,10 @@ const SidebarContent = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   z-index: 0;
   display: flex;
-  min-width: 240px;
+  // min-width: 180px;
   flex-shrink: 0;
-  height: 862px;
-  width: 250px;
+  height: 575px;
+  width: 180px;
   padding: 52px 24px;
 `;
 
@@ -103,6 +103,8 @@ const MenuTitle = styled.h2`
   color: rgba(64, 93, 159, 1);
   font-size: 20px;
   font-weight: 400;
+  margin-top: -15px;
+  margin-bottom: -15px;
 `;
 
 const MenuItems = styled.div`
@@ -116,7 +118,7 @@ const MenuItem = styled.a`
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 13px;
   cursor: pointer;
   text-decoration: none;
   color: inherit;
@@ -136,6 +138,7 @@ const MenuIcon = styled.img`
 
 const SettingsTitle = styled.h2`
   margin-top: 39px;
+  margin-bottom: -15px;
   color: rgba(64, 93, 159, 1);
   font-size: 20px;
   font-weight: 400;

@@ -1,6 +1,5 @@
-// App.tsx
+import DashboardLayout from "./components/DashboardLayout";
 import DashboardHomeScreen from "./components/DashboardHomeScreen";
-import { DashboardLayout } from "./components/DashboardLayout";
 
 function App() {
   return (
