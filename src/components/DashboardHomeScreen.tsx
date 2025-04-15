@@ -1,6 +1,4 @@
-
 "use client";
-import * as React from "react";
 import styled from "styled-components";
 import { Sidebar } from "./Sidebar";
 import { RoomsSection } from "./RoomsSection";
@@ -8,23 +6,7 @@ import { EnergyLevels } from "./EnergyLevels";
 import { DevicesGrid } from "./DevicesGrid";
 import { HistorySection } from "./HistorySection";
 
-import { useEffect, useState } from "react";
-import { db } from "../firebase";
-import { ref, onValue } from "firebase/database";
-
 export default function DashboardHomeScreen() {
-  const [data, setData] = useState<any>(null);
-
-  useEffect(() => {
-    const dataRef = ref(db, "yourDataPath"); // replace with your Firebase DB path
-    const unsubscribe = onValue(dataRef, (snapshot) => {
-      const value = snapshot.val();
-      setData(value);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
   return (
     <DashboardContainer>
       <Layout>
@@ -50,7 +32,6 @@ export default function DashboardHomeScreen() {
 
 const DashboardContainer = styled.main`
   background-color: rgba(232, 243, 252, 1);
-  // padding: 28px 24px;
   overflow-x: auto;
   width: 100vw;
   box-sizing: border-box;
@@ -63,12 +44,12 @@ const Layout = styled.div`
   gap: 20px;
   display: flex;
   width: 100%;
+  padding: 10px;
   @media (max-width: 991px) {
     flex-direction: column;
     align-items: stretch;
     gap: 0px;
   }
-    padding: 10px;
 `;
 
 const SidebarColumn = styled.aside`
@@ -107,12 +88,10 @@ const MainContent = styled.div`
 
 const ContentWrapper = styled.div`
   flex: 1;
-  // max-width: 800px;
   min-width: 300px;
 `;
 
 const Section = styled.div`
-  // margin-bottom: 32px;
   width: 100%;
 `;
 
@@ -124,11 +103,10 @@ const HistoryColumn = styled.aside`
   &::before {
     content: "";
     position: absolute;
-    top: 77px;       // where the line starts
-    height: 873px;   // how tall the line is
+    top: 77px;
+    height: 873px;
     left: 0;
     width: 1px;
     background-color: rgba(0, 0, 0, 0.1);
   }
 `;
-
