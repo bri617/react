@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { Sidebar } from "./Sidebar";
 import { RoomsSection } from "./RoomsSection";
 import { EnergyLevels } from "./EnergyLevels";
-import { DevicesGrid } from "./DevicesGrid";
+import DevicesGrid from "./DevicesGrid"; 
 import { HistorySection } from "./HistorySection";
+
 
 export default function DashboardHomeScreen() {
   return (
